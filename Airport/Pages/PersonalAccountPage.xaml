@@ -1,0 +1,109 @@
+﻿<Page x:Class="Airport.PersonalAccountPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Airport"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1350"
+      Title="PersonalAccountPage" Background="White" Margin="10">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Style="{StaticResource ResourceKey=tbHeader}" >Личный кабинет</TextBlock>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="11*"/>
+                    <RowDefinition Height="6*"/>
+                </Grid.RowDefinitions>
+                <Rectangle RadiusX="100" RadiusY="100" Height="350" Width="350">
+                    <Rectangle.Fill>
+                        <ImageBrush x:Name="myImage" ImageSource="../Resources/icon_user.png" Stretch="UniformToFill"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+                    <TextBlock x:Name="tbLogin" Text="Логин" HorizontalAlignment="Center" FontSize="28"/>
+                    <Button x:Name="btnChangeImage" Template="{StaticResource CTButonMainPage}" Style="{StaticResource ResourceKey=btnMainButton}" Content="Изменить аватарку" Width="300" Click="btnChangeImage_Click"/>
+                    <Button x:Name="btnChangeImages" Template="{StaticResource CTButonMainPage}" Style="{StaticResource ResourceKey=btnMainButton}" Content="Добавить картинки в базу" Width="300" Click="btnChangeImages_Click" Cursor="Hand"/>
+                    <TextBlock x:Name="tbDeleteImage" Style="{StaticResource ResourceKey=TBNextRegistration}" HorizontalAlignment="Center" Text="Удалить картинку" Visibility="Collapsed" MouseUp="tbDeleteImage_MouseUp"/>
+                </StackPanel>
+            </Grid>
+            <StackPanel Grid.Column="1">
+                <Border Style="{StaticResource ResourceKey=bPersonalAccount}">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+                    </Border.Effect>
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Основные данные" Style="{StaticResource ResourceKey=tbHeaderBorderPersonalAccount}"/>
+                        <TextBlock x:Name="tbFIO" Text="ФИО: " FontSize="24" Margin="5"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock x:Name="tbGender" Grid.Column="0" Grid.Row="0" Text="Пол: " Style="{StaticResource ResourceKey=tbTextPersonalAccount}"/>
+                            <TextBlock x:Name="tbDateOfBirth" Grid.Column="1" Grid.Row="0" Text="Дата рождения: " Style="{StaticResource ResourceKey=tbTextPersonalAccount}"/>
+                            <TextBlock x:Name="tbRole" Grid.Column="0" Grid.Row="1" Text="Роль: " Style="{StaticResource ResourceKey=tbTextPersonalAccount}"/>
+                            <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=tbTextPersonalAccount}">
+                                <Run Text="Телефон: "/>
+                                <Run x:Name="tbPhone"/>
+                            </TextBlock>
+                        </Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button x:Name="btnChangeMainData" Template="{StaticResource CTButonMainPage}" Style="{StaticResource ResourceKey=btnMainButton}" Content="Редактировать основные данные" Width="350" Click="btnChangeMainData_Click" Cursor="Hand"/>
+                            <Button x:Name="btnChangeLoginAndPassword" Template="{StaticResource CTButonMainPage}" Style="{StaticResource ResourceKey=btnMainButton}" Content="Редактировать логин и пароль" Width="350" Click="btnChangeLoginAndPassword_Click" Cursor="Hand"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource ResourceKey=bPersonalAccount}">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+                    </Border.Effect>
+                    <StackPanel Margin="10">
+                        <TextBlock Text="Паспортные данные" Style="{StaticResource ResourceKey=tbHeaderBorderPersonalAccount}"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Grid.Row="0" Style="{StaticResource ResourceKey=tbTextPersonalAccount}">
+                                <Run Text="Серия: "/>
+                                <Run x:Name="tbSeria"/>
+                            </TextBlock>
+                            <TextBlock Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=tbTextPersonalAccount}">
+                                <Run Text="Номер: "/>
+                                <Run x:Name="tbNomer"/>
+                            </TextBlock>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource ResourceKey=tbTextPersonalAccount}">
+                                <Run Text="Дата выдачи: "/>
+                                <Run x:Name="tbDateIssue"/>
+                            </TextBlock>
+                            <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=tbTextPersonalAccount}">
+                                <Run Text="Код подразделения: "/>
+                                <Run x:Name="tbDivisionCode"/>
+                            </TextBlock>
+                        </Grid>
+                        <Button x:Name="btnChangePassportData" Template="{StaticResource CTButonMainPage}" Style="{StaticResource ResourceKey=btnMainButton}" HorizontalAlignment="Center" Content="Редактировать паспортные данные" Width="350" Click="btnChangePassportData_Click"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
+        <Button x:Name="btnExit" Grid.Row="2" Template="{StaticResource CTButonMainPage}" Style="{StaticResource ResourceKey=btnMainButton}" HorizontalAlignment="Left" Click="btnExit_Click" Content="Назад"/>
+    </Grid>
+</Page>

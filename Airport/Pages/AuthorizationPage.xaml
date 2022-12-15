@@ -1,0 +1,50 @@
+﻿<Page x:Class="Airport.AuthorizationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Airport"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1350"
+      Title="AuthorizationPage" Background="#FFCFE8FF">
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel VerticalAlignment="Center" Width="650" Orientation="Vertical">
+                <TextBlock FontSize="42" TextWrapping="Wrap" TextAlignment="Center">Мы рады видеть вас</TextBlock>
+                <Image Height="500" Width="500" Source="../Resources/autorization.png"/>
+            </StackPanel>
+            <Border Background="White" Width="700" CornerRadius="20, 0, 0, 20">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Image Height="70" Width="70" Source="../Resources/autorization_logo.png"/>
+                        <TextBlock Grid.Row="0" FontSize="35" VerticalAlignment="Center">Авторизация</TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Margin="40,0,40,0">
+                        <GroupBox Header="Введите логин" FontSize="28">
+                            <TextBox x:Name="tboxLogin" MaxLength="50"/>
+                        </GroupBox>
+                        <GroupBox Header="Введите пароль" FontSize="28">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Width="550" x:Name="pbPasswordVisible" Visibility="Collapsed"/>
+                                <PasswordBox Width="550" x:Name="pbPassword"/>
+                                <Image x:Name="imVisiblePassword" Height="40" Width="40" Source="..\Resources\icon_password_visible.png" Margin="10, 0, 0, 0" PreviewMouseUp="imVisiblePassword_PreviewMouseUp" PreviewMouseDown="imVisiblePassword_PreviewMouseDown"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Margin="40,0,40,0" HorizontalAlignment="Center">
+                        <Button x:Name="BtnAutorization" Content="Авторизироваться" Click="BtnAutorization_Click" Template="{StaticResource CTButonMainPage}" Style="{StaticResource ResourceKey=BtnAuthorizationAndRegistration}" Cursor="Hand"/>
+                        <TextBlock x:Name="TBNextRegistration" PreviewMouseDown="TBNextRegistration_PreviewMouseDown" Style="{StaticResource ResourceKey=TBNextRegistration}">Ещё не зарегистрированы?</TextBlock>
+                    </StackPanel>
+                </Grid>
+            </Border> 
+        </StackPanel>
+    </Grid>
+</Page>

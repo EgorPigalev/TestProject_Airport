@@ -1,0 +1,85 @@
+﻿<Page x:Class="Airport.RegistrationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Airport"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1350"
+      Title="RegistrationPage" Background="#FFCFE8FF">
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Width="350"/>
+            <Border Background="White" Width="1000" CornerRadius="20, 0, 0, 20">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="5*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Image Height="70" Width="70" Source="../Resources/registration_logo.png"/>
+                        <TextBlock Grid.Row="0" FontSize="35" VerticalAlignment="Center">Регистрация</TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Margin="40,0,40,0" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="0, 5">
+                            <GroupBox Header="Фамилия*" Style="{StaticResource ResourceKey=GBRegistration}">
+                                <TextBox x:Name="tbSurname" MaxLength="50"/>
+                            </GroupBox>
+                            <GroupBox Header="Имя*" Style="{StaticResource ResourceKey=GBRegistration}">
+                                <TextBox x:Name="tbName" MaxLength="50"/>
+                            </GroupBox>
+                            <GroupBox Header="Отчество*" Style="{StaticResource ResourceKey=GBRegistration}">
+                                <TextBox x:Name="tbPatronomic" MaxLength="50"/>
+                            </GroupBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  Margin="0, 5">
+                            <GroupBox Header="Пол*" Style="{StaticResource ResourceKey=GBRegistration}">
+                                <ComboBox x:Name="cbGender"/>
+                            </GroupBox>
+                            <GroupBox Header="Дата рождения*" Style="{StaticResource ResourceKey=GBRegistration}">
+                                <DatePicker x:Name="dpBrithday"/>
+                            </GroupBox>
+                            <GroupBox Header="Телефон" Style="{StaticResource ResourceKey=GBRegistration}">
+                                <TextBox x:Name="tbPhone" PreviewTextInput="tbPhone_PreviewTextInput" MaxLength="16"/>
+                            </GroupBox>
+                        </StackPanel>
+                        <GroupBox Header="Логин*" FontSize="24" Width="900"  Margin="0, 5">
+                            <TextBox x:Name="tbLogin" MaxLength="50"/>
+                        </GroupBox>
+                        <StackPanel Orientation="Horizontal"  Margin="0, 5">
+                            <GroupBox Header="Пароль*" Style="{StaticResource ResourceKey=GBRegistrationPassword}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Width="380" x:Name="pbPasswordVisible" Visibility="Collapsed"/>
+                                    <PasswordBox Width="380" x:Name="pbPassword">
+                                        <PasswordBox.ToolTip>
+                                            <TextBlock TextWrapping = "Wrap" TextAlignment="Center" Width="400">
+                                                Введенный пароль должен удовлетворять следующим требованиям: не менее 1 заглавного латинского символа, не менее 3 строчных латинских символов, не менее 2 цифры и не менее 1 спец.символа.Общая длина пароля не менее 8 символов
+                                            </TextBlock>
+                                        </PasswordBox.ToolTip>
+                                    </PasswordBox>
+                                    <Image x:Name="imVisiblePassword" Style="{StaticResource ResourceKey=imVisiblePasswordRegistration}" Source="..\Resources\icon_password_visible.png" PreviewMouseUp="imVisiblePassword_PreviewMouseUp" PreviewMouseDown="imVisiblePassword_PreviewMouseDown"/>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="Повторный пароль*" Style="{StaticResource ResourceKey=GBRegistrationPassword}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Width="380" x:Name="pbPasswordRepeatedVisible" Visibility="Collapsed"/>
+                                    <PasswordBox Width="380" x:Name="pbPasswordRepeated"/>
+                                    <Image x:Name="imVisiblePasswordRepeated" Style="{StaticResource ResourceKey=imVisiblePasswordRegistration}" Source="..\Resources\icon_password_visible.png" PreviewMouseUp="imVisiblePasswordRepeated_PreviewMouseUp" PreviewMouseDown="imVisiblePasswordRepeated_PreviewMouseDown"/>
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
+                        <TextBlock Style="{StaticResource ResourceKey=tbRequiredFields}">* - поля обязательные к заполнению</TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Margin="40,0,40,0" HorizontalAlignment="Center">
+                        <Button x:Name="BtnRegistration" Content="Зарегистироваться" Click="BtnRegistration_Click" Template="{StaticResource CTButonMainPage}" Style="{StaticResource ResourceKey=BtnAuthorizationAndRegistration}" Cursor="Hand"/>
+                        <TextBlock x:Name="TBNextRegistration" PreviewMouseDown="TBNextRegistration_PreviewMouseDown" Style="{StaticResource ResourceKey=TBNextRegistration}" HorizontalAlignment="Center" Cursor="Hand">Уже есть аккаунт</TextBlock>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Page>

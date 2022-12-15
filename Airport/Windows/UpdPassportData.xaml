@@ -1,0 +1,50 @@
+﻿<Window x:Class="Airport.UpdPassportData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Airport"
+        mc:Ignorable="d"
+        Title="Изменение паспортных данных" Style="{StaticResource ResourceKey=wUpdPersonalAccount}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
+            <Image Style="{StaticResource ResourceKey=imHeader}" Source="..\Resources\upd_personal_account.png"/>
+            <TextBlock Text="Редактирование паспортных данных" Style="{StaticResource ResourceKey=tbHeaderWithImage}"/>
+        </StackPanel>
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0" Margin="10">
+                <TextBlock Text="Серия" HorizontalAlignment="Center"/>
+                <TextBox x:Name="tbSeria" MaxLength="4" PreviewTextInput="tbSeriaAndNomer_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="1"  Margin="10">
+                <TextBlock Text="Номер" HorizontalAlignment="Center"/>
+                <TextBox x:Name="tbNomer" MaxLength="6" PreviewTextInput="tbSeriaAndNomer_PreviewTextInput"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="0"  Margin="10">
+                <TextBlock Text="Дата выдачи" HorizontalAlignment="Center"/>
+                <DatePicker x:Name="dpDateIssue"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1"  Margin="10">
+                <TextBlock Text="Код подразделения" HorizontalAlignment="Center"/>
+                <TextBox x:Name="tbDivisionCode" MaxLength="10" PreviewTextInput="tbDivisionCode_PreviewTextInput"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Button x:Name="btnBack" Template="{StaticResource CTButonMainPage}" Style="{StaticResource ResourceKey=butPersonalAccountBack}" Click="btnBack_Click" Cursor="Hand"/>
+            <Button x:Name="btnAdd" Template="{StaticResource CTButonMainPage}" Style="{StaticResource ResourceKey=butPersonalAccountUpd}" Click="btnAdd_Click" Cursor="Hand"/>
+        </Grid>
+    </Grid>
+</Window>

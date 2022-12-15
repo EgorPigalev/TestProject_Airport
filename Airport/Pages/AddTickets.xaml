@@ -1,0 +1,92 @@
+﻿<Page x:Class="Airport.Pages.AddTickets"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Airport.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1350"
+      Title="AddTickets" Background="White" Margin="10" FontSize="18">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Image Height="300" Width="300" Source="..\Resources\icon_ticket.png"/>
+            <Button x:Name="btnBack" Template="{StaticResource CTButonMainPage}" Style="{StaticResource ResourceKey=btnMainButton}" HorizontalAlignment="Center" Click="BtnBack_Click" Content="Назад" Grid.Row="1"/>
+        </Grid>
+        
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                <Image x:Name="imHeaderTicket" Style="{StaticResource ResourceKey=imHeader}" Source="..\Resources\icon_addTicket.png"/>
+                <TextBlock x:Name="tbHeaderTiket" Style="{StaticResource ResourceKey=tbHeaderWithImage}">Добавление билета в каcсу</TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <GroupBox Header="Поиск рейса" Width="900" ToolTip="Поля поиска предназначены для отбора рейсов">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Style="{StaticResource ResourceKey=spAddTicketsRoute}">
+                            <TextBlock Text="От" HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox x:Name="cbDeparture_point" SelectionChanged="SelectionChanged" Width="240"/>
+                                <Image Name="imDeparture_point" Source="..\Resources\icon_clear_search_flight.png" MouseDown="imDeparture_point_MouseDown" Style="{StaticResource ResourceKey=imClearRoute}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Style="{StaticResource ResourceKey=spAddTicketsRoute}">
+                            <TextBlock Text="До" HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal">
+                                <ComboBox x:Name="cbArrival_point" SelectionChanged="SelectionChanged" Width="240"/>
+                                <Image Name="imArrival_point" Source="..\Resources\icon_clear_search_flight.png" MouseDown="imArrival_point_MouseDown" Style="{StaticResource ResourceKey=imClearRoute}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Style="{StaticResource ResourceKey=spAddTicketsRoute}">
+                            <TextBlock Text="Дата" HorizontalAlignment="Center"/>
+                            <DatePicker x:Name="dpDay" SelectedDateChanged="SelectionChanged"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Выбор рейса" Width="900">
+                    <ComboBox Name="cbFlight"  Margin="10, 0, 10, 0" SelectionChanged="cbFlight_SelectionChanged"/>
+                </GroupBox>
+                <GroupBox Header="Покупка" Width="900">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Style="{StaticResource ResourceKey=spAddTicketsBuy}">
+                            <TextBlock Text="Покупатель" HorizontalAlignment="Center"/>
+                            <ComboBox x:Name="cbPassenger"/>
+                        </StackPanel>
+                        <StackPanel Style="{StaticResource ResourceKey=spAddTicketsBuy}">
+                            <TextBlock Text="Кассир" HorizontalAlignment="Center"/>
+                            <ComboBox x:Name="cbEmployee"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Добавление скидки" Width="900">
+                    <ListBox Name="lbDiscount" SelectionMode="Multiple" Height="150" SelectionChanged="lbDiscount_SelectionChanged" ToolTip="Максимально возможная сумма скидок равна 100%">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding description}"></TextBlock>
+                                    <TextBlock Text="{Binding value, StringFormat={} - {0}%}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </GroupBox>
+                <TextBlock Name="tbPrice" Text="Здесь будет указана стоимость билета" HorizontalAlignment="Center" FontSize="32"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btnClear" Template="{StaticResource CTButonMainPage}" Style="{StaticResource ResourceKey=btnMainButton}" Content="Очистить" Click="btnClear_Click" Cursor="Hand"/>
+                <Button x:Name="btnAdd" Template="{StaticResource CTButonMainPage}" Style="{StaticResource ResourceKey=btnMainButton}" Content="Добавить" Click="btnAdd_Click" Cursor="Hand"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

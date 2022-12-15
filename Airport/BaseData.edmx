@@ -1,0 +1,1039 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище BaseDataModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ApplicationOfDiscounts">
+          <Key>
+            <PropertyRef Name="id_application_discounts" />
+          </Key>
+          <Property Name="id_application_discounts" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_ticket" Type="int" Nullable="false" />
+          <Property Name="id_discount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Box_Offic">
+          <Key>
+            <PropertyRef Name="id_ticket" />
+          </Key>
+          <Property Name="id_ticket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_flight" Type="int" Nullable="false" />
+          <Property Name="id_employee" Type="int" Nullable="false" />
+          <Property Name="id_passenger" Type="int" Nullable="false" />
+          <Property Name="date_of_sale" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Citys">
+          <Key>
+            <PropertyRef Name="id_city" />
+          </Key>
+          <Property Name="id_city" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Discounts">
+          <Key>
+            <PropertyRef Name="id_discount" />
+          </Key>
+          <Property Name="id_discount" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="value" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="id_employee" />
+          </Key>
+          <Property Name="id_employee" Type="int" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="patronomic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_gender" Type="int" Nullable="false" />
+          <Property Name="date_of_birth" Type="date" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="int" Nullable="false" />
+          <Property Name="id_role" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeesPhoto">
+          <Key>
+            <PropertyRef Name="id_photo" />
+          </Key>
+          <Property Name="id_photo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_employee" Type="int" Nullable="false" />
+          <Property Name="photo_path" Type="nvarchar" MaxLength="100" />
+          <Property Name="photo_binary" Type="varbinary(max)" />
+          <Property Name="actual" Type="bit" />
+        </EntityType>
+        <EntityType Name="Flights">
+          <Key>
+            <PropertyRef Name="id_flight" />
+          </Key>
+          <Property Name="id_flight" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="departure_date" Type="date" Nullable="false" />
+          <Property Name="departure_time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="id_route" Type="int" Nullable="false" />
+          <Property Name="id_plane" Type="int" Nullable="false" />
+          <Property Name="cost" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="id_gender" />
+          </Key>
+          <Property Name="id_gender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gender" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Passengers">
+          <Key>
+            <PropertyRef Name="id_passenger" />
+          </Key>
+          <Property Name="id_passenger" Type="int" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="patronomic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_gender" Type="int" Nullable="false" />
+          <Property Name="date_of_birth" Type="date" Nullable="false" />
+          <Property Name="phone" Type="nvarchar" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="Passport_deta">
+          <Key>
+            <PropertyRef Name="id_passport_deta" />
+          </Key>
+          <Property Name="id_passport_deta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="series" Type="int" />
+          <Property Name="nomer" Type="int" />
+          <Property Name="date_issue" Type="date" />
+          <Property Name="division_code" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Planes">
+          <Key>
+            <PropertyRef Name="id_plane" />
+          </Key>
+          <Property Name="id_plane" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="board_number" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="release_date" Type="date" Nullable="false" />
+          <Property Name="lebensdauer" Type="float" Nullable="false" />
+          <Property Name="number_of_seats" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Routes">
+          <Key>
+            <PropertyRef Name="id_route" />
+          </Key>
+          <Property Name="id_route" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_departure_point" Type="int" Nullable="false" />
+          <Property Name="id_arrival_point" Type="int" Nullable="false" />
+          <Property Name="flight_duration" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_ApplicationOfDiscounts_Box_Offic">
+          <End Role="Box_Offic" Type="Self.Box_Offic" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ApplicationOfDiscounts" Type="Self.ApplicationOfDiscounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Box_Offic">
+              <PropertyRef Name="id_ticket" />
+            </Principal>
+            <Dependent Role="ApplicationOfDiscounts">
+              <PropertyRef Name="id_ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationOfDiscounts_Discounts">
+          <End Role="Discounts" Type="Self.Discounts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ApplicationOfDiscounts" Type="Self.ApplicationOfDiscounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discounts">
+              <PropertyRef Name="id_discount" />
+            </Principal>
+            <Dependent Role="ApplicationOfDiscounts">
+              <PropertyRef Name="id_discount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoxOffic_Cashiers">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Box_Offic" Type="Self.Box_Offic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="id_employee" />
+            </Principal>
+            <Dependent Role="Box_Offic">
+              <PropertyRef Name="id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoxOffic_Flights">
+          <End Role="Flights" Type="Self.Flights" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Box_Offic" Type="Self.Box_Offic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flights">
+              <PropertyRef Name="id_flight" />
+            </Principal>
+            <Dependent Role="Box_Offic">
+              <PropertyRef Name="id_flight" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoxOffic_Passengers">
+          <End Role="Passengers" Type="Self.Passengers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Box_Offic" Type="Self.Box_Offic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passengers">
+              <PropertyRef Name="id_passenger" />
+            </Principal>
+            <Dependent Role="Box_Offic">
+              <PropertyRef Name="id_passenger" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cashiers_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="id_gender" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="id_gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cashiers_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Passport_deta">
+          <End Role="Passport_deta" Type="Self.Passport_deta" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Passport_deta">
+              <PropertyRef Name="id_passport_deta" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeesPhoto_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="EmployeesPhoto" Type="Self.EmployeesPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="id_employee" />
+            </Principal>
+            <Dependent Role="EmployeesPhoto">
+              <PropertyRef Name="id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flights_Planes">
+          <End Role="Planes" Type="Self.Planes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Flights" Type="Self.Flights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planes">
+              <PropertyRef Name="id_plane" />
+            </Principal>
+            <Dependent Role="Flights">
+              <PropertyRef Name="id_plane" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flights_Routes">
+          <End Role="Routes" Type="Self.Routes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Flights" Type="Self.Flights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Routes">
+              <PropertyRef Name="id_route" />
+            </Principal>
+            <Dependent Role="Flights">
+              <PropertyRef Name="id_route" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passengers_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Passengers" Type="Self.Passengers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="id_gender" />
+            </Principal>
+            <Dependent Role="Passengers">
+              <PropertyRef Name="id_gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passengers_Passport_deta">
+          <End Role="Passport_deta" Type="Self.Passport_deta" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Passengers" Type="Self.Passengers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Passport_deta">
+              <PropertyRef Name="id_passport_deta" />
+            </Principal>
+            <Dependent Role="Passengers">
+              <PropertyRef Name="id_passenger" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Routes_Citys">
+          <End Role="Citys" Type="Self.Citys" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Routes" Type="Self.Routes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Citys">
+              <PropertyRef Name="id_city" />
+            </Principal>
+            <Dependent Role="Routes">
+              <PropertyRef Name="id_arrival_point" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Routes_Citys1">
+          <End Role="Citys" Type="Self.Citys" Multiplicity="1" />
+          <End Role="Routes" Type="Self.Routes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Citys">
+              <PropertyRef Name="id_city" />
+            </Principal>
+            <Dependent Role="Routes">
+              <PropertyRef Name="id_departure_point" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище BaseDataModelContainer">
+          <EntitySet Name="ApplicationOfDiscounts" EntityType="Self.ApplicationOfDiscounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Box_Offic" EntityType="Self.Box_Offic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Citys" EntityType="Self.Citys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Discounts" EntityType="Self.Discounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeesPhoto" EntityType="Self.EmployeesPhoto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flights" EntityType="Self.Flights" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passengers" EntityType="Self.Passengers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passport_deta" EntityType="Self.Passport_deta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Planes" EntityType="Self.Planes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Routes" EntityType="Self.Routes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ApplicationOfDiscounts_Box_Offic" Association="Self.FK_ApplicationOfDiscounts_Box_Offic">
+            <End Role="Box_Offic" EntitySet="Box_Offic" />
+            <End Role="ApplicationOfDiscounts" EntitySet="ApplicationOfDiscounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationOfDiscounts_Discounts" Association="Self.FK_ApplicationOfDiscounts_Discounts">
+            <End Role="Discounts" EntitySet="Discounts" />
+            <End Role="ApplicationOfDiscounts" EntitySet="ApplicationOfDiscounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoxOffic_Cashiers" Association="Self.FK_BoxOffic_Cashiers">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Box_Offic" EntitySet="Box_Offic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoxOffic_Flights" Association="Self.FK_BoxOffic_Flights">
+            <End Role="Flights" EntitySet="Flights" />
+            <End Role="Box_Offic" EntitySet="Box_Offic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoxOffic_Passengers" Association="Self.FK_BoxOffic_Passengers">
+            <End Role="Passengers" EntitySet="Passengers" />
+            <End Role="Box_Offic" EntitySet="Box_Offic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cashiers_Gender" Association="Self.FK_Cashiers_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cashiers_Roles" Association="Self.FK_Cashiers_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Passport_deta" Association="Self.FK_Employees_Passport_deta">
+            <End Role="Passport_deta" EntitySet="Passport_deta" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeesPhoto_Employees" Association="Self.FK_EmployeesPhoto_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="EmployeesPhoto" EntitySet="EmployeesPhoto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flights_Planes" Association="Self.FK_Flights_Planes">
+            <End Role="Planes" EntitySet="Planes" />
+            <End Role="Flights" EntitySet="Flights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flights_Routes" Association="Self.FK_Flights_Routes">
+            <End Role="Routes" EntitySet="Routes" />
+            <End Role="Flights" EntitySet="Flights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passengers_Gender" Association="Self.FK_Passengers_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Passengers" EntitySet="Passengers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passengers_Passport_deta" Association="Self.FK_Passengers_Passport_deta">
+            <End Role="Passport_deta" EntitySet="Passport_deta" />
+            <End Role="Passengers" EntitySet="Passengers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Routes_Citys" Association="Self.FK_Routes_Citys">
+            <End Role="Citys" EntitySet="Citys" />
+            <End Role="Routes" EntitySet="Routes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Routes_Citys1" Association="Self.FK_Routes_Citys1">
+            <End Role="Citys" EntitySet="Citys" />
+            <End Role="Routes" EntitySet="Routes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BaseDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BaseDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ApplicationOfDiscounts" EntityType="BaseDataModel.ApplicationOfDiscounts" />
+          <EntitySet Name="Box_Offic" EntityType="BaseDataModel.Box_Offic" />
+          <EntitySet Name="Citys" EntityType="BaseDataModel.Citys" />
+          <EntitySet Name="Discounts" EntityType="BaseDataModel.Discounts" />
+          <EntitySet Name="Employees" EntityType="BaseDataModel.Employees" />
+          <EntitySet Name="EmployeesPhoto" EntityType="BaseDataModel.EmployeesPhoto" />
+          <EntitySet Name="Flights" EntityType="BaseDataModel.Flights" />
+          <EntitySet Name="Gender" EntityType="BaseDataModel.Gender" />
+          <EntitySet Name="Passengers" EntityType="BaseDataModel.Passengers" />
+          <EntitySet Name="Passport_deta" EntityType="BaseDataModel.Passport_deta" />
+          <EntitySet Name="Planes" EntityType="BaseDataModel.Planes" />
+          <EntitySet Name="Roles" EntityType="BaseDataModel.Roles" />
+          <EntitySet Name="Routes" EntityType="BaseDataModel.Routes" />
+          <EntitySet Name="sysdiagrams" EntityType="BaseDataModel.sysdiagrams" />
+          <AssociationSet Name="FK_ApplicationOfDiscounts_Box_Offic" Association="BaseDataModel.FK_ApplicationOfDiscounts_Box_Offic">
+            <End Role="Box_Offic" EntitySet="Box_Offic" />
+            <End Role="ApplicationOfDiscounts" EntitySet="ApplicationOfDiscounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApplicationOfDiscounts_Discounts" Association="BaseDataModel.FK_ApplicationOfDiscounts_Discounts">
+            <End Role="Discounts" EntitySet="Discounts" />
+            <End Role="ApplicationOfDiscounts" EntitySet="ApplicationOfDiscounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoxOffic_Cashiers" Association="BaseDataModel.FK_BoxOffic_Cashiers">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Box_Offic" EntitySet="Box_Offic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoxOffic_Flights" Association="BaseDataModel.FK_BoxOffic_Flights">
+            <End Role="Flights" EntitySet="Flights" />
+            <End Role="Box_Offic" EntitySet="Box_Offic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BoxOffic_Passengers" Association="BaseDataModel.FK_BoxOffic_Passengers">
+            <End Role="Passengers" EntitySet="Passengers" />
+            <End Role="Box_Offic" EntitySet="Box_Offic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Routes_Citys" Association="BaseDataModel.FK_Routes_Citys">
+            <End Role="Citys" EntitySet="Citys" />
+            <End Role="Routes" EntitySet="Routes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Routes_Citys1" Association="BaseDataModel.FK_Routes_Citys1">
+            <End Role="Citys" EntitySet="Citys" />
+            <End Role="Routes" EntitySet="Routes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cashiers_Gender" Association="BaseDataModel.FK_Cashiers_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cashiers_Roles" Association="BaseDataModel.FK_Cashiers_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Passport_deta" Association="BaseDataModel.FK_Employees_Passport_deta">
+            <End Role="Passport_deta" EntitySet="Passport_deta" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeesPhoto_Employees" Association="BaseDataModel.FK_EmployeesPhoto_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="EmployeesPhoto" EntitySet="EmployeesPhoto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flights_Planes" Association="BaseDataModel.FK_Flights_Planes">
+            <End Role="Planes" EntitySet="Planes" />
+            <End Role="Flights" EntitySet="Flights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flights_Routes" Association="BaseDataModel.FK_Flights_Routes">
+            <End Role="Routes" EntitySet="Routes" />
+            <End Role="Flights" EntitySet="Flights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passengers_Gender" Association="BaseDataModel.FK_Passengers_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Passengers" EntitySet="Passengers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passengers_Passport_deta" Association="BaseDataModel.FK_Passengers_Passport_deta">
+            <End Role="Passport_deta" EntitySet="Passport_deta" />
+            <End Role="Passengers" EntitySet="Passengers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ApplicationOfDiscounts">
+          <Key>
+            <PropertyRef Name="id_application_discounts" />
+          </Key>
+          <Property Name="id_application_discounts" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_ticket" Type="Int32" Nullable="false" />
+          <Property Name="id_discount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Box_Offic" Relationship="BaseDataModel.FK_ApplicationOfDiscounts_Box_Offic" FromRole="ApplicationOfDiscounts" ToRole="Box_Offic" />
+          <NavigationProperty Name="Discounts" Relationship="BaseDataModel.FK_ApplicationOfDiscounts_Discounts" FromRole="ApplicationOfDiscounts" ToRole="Discounts" />
+        </EntityType>
+        <EntityType Name="Box_Offic">
+          <Key>
+            <PropertyRef Name="id_ticket" />
+          </Key>
+          <Property Name="id_ticket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_flight" Type="Int32" Nullable="false" />
+          <Property Name="id_employee" Type="Int32" Nullable="false" />
+          <Property Name="id_passenger" Type="Int32" Nullable="false" />
+          <Property Name="date_of_sale" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ApplicationOfDiscounts" Relationship="BaseDataModel.FK_ApplicationOfDiscounts_Box_Offic" FromRole="Box_Offic" ToRole="ApplicationOfDiscounts" />
+          <NavigationProperty Name="Employees" Relationship="BaseDataModel.FK_BoxOffic_Cashiers" FromRole="Box_Offic" ToRole="Employees" />
+          <NavigationProperty Name="Flights" Relationship="BaseDataModel.FK_BoxOffic_Flights" FromRole="Box_Offic" ToRole="Flights" />
+          <NavigationProperty Name="Passengers" Relationship="BaseDataModel.FK_BoxOffic_Passengers" FromRole="Box_Offic" ToRole="Passengers" />
+        </EntityType>
+        <EntityType Name="Citys">
+          <Key>
+            <PropertyRef Name="id_city" />
+          </Key>
+          <Property Name="id_city" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="city" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Routes" Relationship="BaseDataModel.FK_Routes_Citys" FromRole="Citys" ToRole="Routes" />
+          <NavigationProperty Name="Routes1" Relationship="BaseDataModel.FK_Routes_Citys1" FromRole="Citys" ToRole="Routes" />
+        </EntityType>
+        <EntityType Name="Discounts">
+          <Key>
+            <PropertyRef Name="id_discount" />
+          </Key>
+          <Property Name="id_discount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="value" Type="Double" Nullable="false" />
+          <NavigationProperty Name="ApplicationOfDiscounts" Relationship="BaseDataModel.FK_ApplicationOfDiscounts_Discounts" FromRole="Discounts" ToRole="ApplicationOfDiscounts" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="id_employee" />
+          </Key>
+          <Property Name="id_employee" Type="Int32" Nullable="false" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="patronomic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_gender" Type="Int32" Nullable="false" />
+          <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="Int32" Nullable="false" />
+          <Property Name="id_role" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Box_Offic" Relationship="BaseDataModel.FK_BoxOffic_Cashiers" FromRole="Employees" ToRole="Box_Offic" />
+          <NavigationProperty Name="Gender" Relationship="BaseDataModel.FK_Cashiers_Gender" FromRole="Employees" ToRole="Gender" />
+          <NavigationProperty Name="Roles" Relationship="BaseDataModel.FK_Cashiers_Roles" FromRole="Employees" ToRole="Roles" />
+          <NavigationProperty Name="Passport_deta" Relationship="BaseDataModel.FK_Employees_Passport_deta" FromRole="Employees" ToRole="Passport_deta" />
+          <NavigationProperty Name="EmployeesPhoto" Relationship="BaseDataModel.FK_EmployeesPhoto_Employees" FromRole="Employees" ToRole="EmployeesPhoto" />
+        </EntityType>
+        <EntityType Name="EmployeesPhoto">
+          <Key>
+            <PropertyRef Name="id_photo" />
+          </Key>
+          <Property Name="id_photo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_employee" Type="Int32" Nullable="false" />
+          <Property Name="photo_path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="photo_binary" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="actual" Type="Boolean" />
+          <NavigationProperty Name="Employees" Relationship="BaseDataModel.FK_EmployeesPhoto_Employees" FromRole="EmployeesPhoto" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Flights">
+          <Key>
+            <PropertyRef Name="id_flight" />
+          </Key>
+          <Property Name="id_flight" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="departure_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="departure_time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="id_route" Type="Int32" Nullable="false" />
+          <Property Name="id_plane" Type="Int32" Nullable="false" />
+          <Property Name="cost" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Box_Offic" Relationship="BaseDataModel.FK_BoxOffic_Flights" FromRole="Flights" ToRole="Box_Offic" />
+          <NavigationProperty Name="Planes" Relationship="BaseDataModel.FK_Flights_Planes" FromRole="Flights" ToRole="Planes" />
+          <NavigationProperty Name="Routes" Relationship="BaseDataModel.FK_Flights_Routes" FromRole="Flights" ToRole="Routes" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="id_gender" />
+          </Key>
+          <Property Name="id_gender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gender" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employees" Relationship="BaseDataModel.FK_Cashiers_Gender" FromRole="Gender" ToRole="Employees" />
+          <NavigationProperty Name="Passengers" Relationship="BaseDataModel.FK_Passengers_Gender" FromRole="Gender" ToRole="Passengers" />
+        </EntityType>
+        <EntityType Name="Passengers">
+          <Key>
+            <PropertyRef Name="id_passenger" />
+          </Key>
+          <Property Name="id_passenger" Type="Int32" Nullable="false" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="patronomic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_gender" Type="Int32" Nullable="false" />
+          <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="phone" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Box_Offic" Relationship="BaseDataModel.FK_BoxOffic_Passengers" FromRole="Passengers" ToRole="Box_Offic" />
+          <NavigationProperty Name="Gender" Relationship="BaseDataModel.FK_Passengers_Gender" FromRole="Passengers" ToRole="Gender" />
+          <NavigationProperty Name="Passport_deta" Relationship="BaseDataModel.FK_Passengers_Passport_deta" FromRole="Passengers" ToRole="Passport_deta" />
+        </EntityType>
+        <EntityType Name="Passport_deta">
+          <Key>
+            <PropertyRef Name="id_passport_deta" />
+          </Key>
+          <Property Name="id_passport_deta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="series" Type="Int32" />
+          <Property Name="nomer" Type="Int32" />
+          <Property Name="date_issue" Type="DateTime" Precision="0" />
+          <Property Name="division_code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employees" Relationship="BaseDataModel.FK_Employees_Passport_deta" FromRole="Passport_deta" ToRole="Employees" />
+          <NavigationProperty Name="Passengers" Relationship="BaseDataModel.FK_Passengers_Passport_deta" FromRole="Passport_deta" ToRole="Passengers" />
+        </EntityType>
+        <EntityType Name="Planes">
+          <Key>
+            <PropertyRef Name="id_plane" />
+          </Key>
+          <Property Name="id_plane" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="board_number" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="release_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="lebensdauer" Type="Double" Nullable="false" />
+          <Property Name="number_of_seats" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Flights" Relationship="BaseDataModel.FK_Flights_Planes" FromRole="Planes" ToRole="Flights" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employees" Relationship="BaseDataModel.FK_Cashiers_Roles" FromRole="Roles" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Routes">
+          <Key>
+            <PropertyRef Name="id_route" />
+          </Key>
+          <Property Name="id_route" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_departure_point" Type="Int32" Nullable="false" />
+          <Property Name="id_arrival_point" Type="Int32" Nullable="false" />
+          <Property Name="flight_duration" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Citys" Relationship="BaseDataModel.FK_Routes_Citys" FromRole="Routes" ToRole="Citys" />
+          <NavigationProperty Name="Citys1" Relationship="BaseDataModel.FK_Routes_Citys1" FromRole="Routes" ToRole="Citys" />
+          <NavigationProperty Name="Flights" Relationship="BaseDataModel.FK_Flights_Routes" FromRole="Routes" ToRole="Flights" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_ApplicationOfDiscounts_Box_Offic">
+          <End Type="BaseDataModel.Box_Offic" Role="Box_Offic" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BaseDataModel.ApplicationOfDiscounts" Role="ApplicationOfDiscounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Box_Offic">
+              <PropertyRef Name="id_ticket" />
+            </Principal>
+            <Dependent Role="ApplicationOfDiscounts">
+              <PropertyRef Name="id_ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApplicationOfDiscounts_Discounts">
+          <End Type="BaseDataModel.Discounts" Role="Discounts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BaseDataModel.ApplicationOfDiscounts" Role="ApplicationOfDiscounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discounts">
+              <PropertyRef Name="id_discount" />
+            </Principal>
+            <Dependent Role="ApplicationOfDiscounts">
+              <PropertyRef Name="id_discount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoxOffic_Cashiers">
+          <End Type="BaseDataModel.Employees" Role="Employees" Multiplicity="1" />
+          <End Type="BaseDataModel.Box_Offic" Role="Box_Offic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="id_employee" />
+            </Principal>
+            <Dependent Role="Box_Offic">
+              <PropertyRef Name="id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoxOffic_Flights">
+          <End Type="BaseDataModel.Flights" Role="Flights" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BaseDataModel.Box_Offic" Role="Box_Offic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flights">
+              <PropertyRef Name="id_flight" />
+            </Principal>
+            <Dependent Role="Box_Offic">
+              <PropertyRef Name="id_flight" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BoxOffic_Passengers">
+          <End Type="BaseDataModel.Passengers" Role="Passengers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BaseDataModel.Box_Offic" Role="Box_Offic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passengers">
+              <PropertyRef Name="id_passenger" />
+            </Principal>
+            <Dependent Role="Box_Offic">
+              <PropertyRef Name="id_passenger" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Routes_Citys">
+          <End Type="BaseDataModel.Citys" Role="Citys" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BaseDataModel.Routes" Role="Routes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Citys">
+              <PropertyRef Name="id_city" />
+            </Principal>
+            <Dependent Role="Routes">
+              <PropertyRef Name="id_arrival_point" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Routes_Citys1">
+          <End Type="BaseDataModel.Citys" Role="Citys" Multiplicity="1" />
+          <End Type="BaseDataModel.Routes" Role="Routes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Citys">
+              <PropertyRef Name="id_city" />
+            </Principal>
+            <Dependent Role="Routes">
+              <PropertyRef Name="id_departure_point" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cashiers_Gender">
+          <End Type="BaseDataModel.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="BaseDataModel.Employees" Role="Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="id_gender" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="id_gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cashiers_Roles">
+          <End Type="BaseDataModel.Roles" Role="Roles" Multiplicity="1" />
+          <End Type="BaseDataModel.Employees" Role="Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Passport_deta">
+          <End Type="BaseDataModel.Passport_deta" Role="Passport_deta" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BaseDataModel.Employees" Role="Employees" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Passport_deta">
+              <PropertyRef Name="id_passport_deta" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeesPhoto_Employees">
+          <End Type="BaseDataModel.Employees" Role="Employees" Multiplicity="1" />
+          <End Type="BaseDataModel.EmployeesPhoto" Role="EmployeesPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="id_employee" />
+            </Principal>
+            <Dependent Role="EmployeesPhoto">
+              <PropertyRef Name="id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flights_Planes">
+          <End Type="BaseDataModel.Planes" Role="Planes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BaseDataModel.Flights" Role="Flights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planes">
+              <PropertyRef Name="id_plane" />
+            </Principal>
+            <Dependent Role="Flights">
+              <PropertyRef Name="id_plane" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flights_Routes">
+          <End Type="BaseDataModel.Routes" Role="Routes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BaseDataModel.Flights" Role="Flights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Routes">
+              <PropertyRef Name="id_route" />
+            </Principal>
+            <Dependent Role="Flights">
+              <PropertyRef Name="id_route" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passengers_Gender">
+          <End Type="BaseDataModel.Gender" Role="Gender" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BaseDataModel.Passengers" Role="Passengers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="id_gender" />
+            </Principal>
+            <Dependent Role="Passengers">
+              <PropertyRef Name="id_gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passengers_Passport_deta">
+          <End Type="BaseDataModel.Passport_deta" Role="Passport_deta" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="BaseDataModel.Passengers" Role="Passengers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Passport_deta">
+              <PropertyRef Name="id_passport_deta" />
+            </Principal>
+            <Dependent Role="Passengers">
+              <PropertyRef Name="id_passenger" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище BaseDataModelContainer" CdmEntityContainer="BaseDataEntities">
+          <EntitySetMapping Name="ApplicationOfDiscounts">
+            <EntityTypeMapping TypeName="BaseDataModel.ApplicationOfDiscounts">
+              <MappingFragment StoreEntitySet="ApplicationOfDiscounts">
+                <ScalarProperty Name="id_discount" ColumnName="id_discount" />
+                <ScalarProperty Name="id_ticket" ColumnName="id_ticket" />
+                <ScalarProperty Name="id_application_discounts" ColumnName="id_application_discounts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Box_Offic">
+            <EntityTypeMapping TypeName="BaseDataModel.Box_Offic">
+              <MappingFragment StoreEntitySet="Box_Offic">
+                <ScalarProperty Name="date_of_sale" ColumnName="date_of_sale" />
+                <ScalarProperty Name="id_passenger" ColumnName="id_passenger" />
+                <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+                <ScalarProperty Name="id_flight" ColumnName="id_flight" />
+                <ScalarProperty Name="id_ticket" ColumnName="id_ticket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Citys">
+            <EntityTypeMapping TypeName="BaseDataModel.Citys">
+              <MappingFragment StoreEntitySet="Citys">
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="id_city" ColumnName="id_city" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Discounts">
+            <EntityTypeMapping TypeName="BaseDataModel.Discounts">
+              <MappingFragment StoreEntitySet="Discounts">
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id_discount" ColumnName="id_discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="BaseDataModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="id_gender" ColumnName="id_gender" />
+                <ScalarProperty Name="patronomic" ColumnName="patronomic" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeesPhoto">
+            <EntityTypeMapping TypeName="BaseDataModel.EmployeesPhoto">
+              <MappingFragment StoreEntitySet="EmployeesPhoto">
+                <ScalarProperty Name="actual" ColumnName="actual" />
+                <ScalarProperty Name="photo_binary" ColumnName="photo_binary" />
+                <ScalarProperty Name="photo_path" ColumnName="photo_path" />
+                <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+                <ScalarProperty Name="id_photo" ColumnName="id_photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flights">
+            <EntityTypeMapping TypeName="BaseDataModel.Flights">
+              <MappingFragment StoreEntitySet="Flights">
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="id_plane" ColumnName="id_plane" />
+                <ScalarProperty Name="id_route" ColumnName="id_route" />
+                <ScalarProperty Name="departure_time" ColumnName="departure_time" />
+                <ScalarProperty Name="departure_date" ColumnName="departure_date" />
+                <ScalarProperty Name="id_flight" ColumnName="id_flight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="BaseDataModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="id_gender" ColumnName="id_gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passengers">
+            <EntityTypeMapping TypeName="BaseDataModel.Passengers">
+              <MappingFragment StoreEntitySet="Passengers">
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="id_gender" ColumnName="id_gender" />
+                <ScalarProperty Name="patronomic" ColumnName="patronomic" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="id_passenger" ColumnName="id_passenger" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passport_deta">
+            <EntityTypeMapping TypeName="BaseDataModel.Passport_deta">
+              <MappingFragment StoreEntitySet="Passport_deta">
+                <ScalarProperty Name="division_code" ColumnName="division_code" />
+                <ScalarProperty Name="date_issue" ColumnName="date_issue" />
+                <ScalarProperty Name="nomer" ColumnName="nomer" />
+                <ScalarProperty Name="series" ColumnName="series" />
+                <ScalarProperty Name="id_passport_deta" ColumnName="id_passport_deta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Planes">
+            <EntityTypeMapping TypeName="BaseDataModel.Planes">
+              <MappingFragment StoreEntitySet="Planes">
+                <ScalarProperty Name="number_of_seats" ColumnName="number_of_seats" />
+                <ScalarProperty Name="lebensdauer" ColumnName="lebensdauer" />
+                <ScalarProperty Name="release_date" ColumnName="release_date" />
+                <ScalarProperty Name="board_number" ColumnName="board_number" />
+                <ScalarProperty Name="id_plane" ColumnName="id_plane" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="BaseDataModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Routes">
+            <EntityTypeMapping TypeName="BaseDataModel.Routes">
+              <MappingFragment StoreEntitySet="Routes">
+                <ScalarProperty Name="flight_duration" ColumnName="flight_duration" />
+                <ScalarProperty Name="id_arrival_point" ColumnName="id_arrival_point" />
+                <ScalarProperty Name="id_departure_point" ColumnName="id_departure_point" />
+                <ScalarProperty Name="id_route" ColumnName="id_route" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BaseDataModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,159 @@
+﻿<Page x:Class="Airport.ListOfTickets"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Airport"
+      mc:Ignorable="d" 
+      d:DesignHeight="750" d:DesignWidth="1350"
+      Title="ListOfTickets" Background="White" Margin="10" FontSize="18">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="14*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock Style="{StaticResource ResourceKey=tbHeader}">Список купленных билетов</TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="10, 0, 10, 0">
+            <GroupBox Header="Модуль поиска">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Style="{StaticResource ResourceKey=spSearch}">
+                        <TextBlock Text="Кассир" FontSize="22"/>
+                        <ComboBox Name="cmbEmployee" Style="{StaticResource ResourceKey=cbSearch}" SelectionChanged="cmbEmployee_SelectionChanged"></ComboBox>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Style="{StaticResource ResourceKey=spSearch}">
+                        <TextBlock Text="Пассажир" FontSize="22"/>
+                        <TextBox Name="tbPassenger" Width="300" Margin="10, 0, 0, 0" MaxLength="50" TextChanged="tbPassenger_TextChanged"></TextBox>
+                    </StackPanel>
+                    <CheckBox Name="cbStock" FontSize="22" Content="Только со скидками" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="cbStock_Checked" Unchecked="cbStock_Checked"></CheckBox>
+                </Grid>
+            </GroupBox>
+            <StackPanel Orientation="Horizontal">
+                <GroupBox Header="Сортировка">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <ComboBox Name="cbNameField" Style="{StaticResource ResourceKey=cbSearch}" SelectionChanged="cmbEmployee_SelectionChanged">
+                            <ComboBoxItem>Без сортировки</ComboBoxItem>
+                            <ComboBoxItem>Пассажир</ComboBoxItem>
+                            <ComboBoxItem>Дата продажи</ComboBoxItem>
+                            <ComboBoxItem>Дата вылета</ComboBoxItem>
+                        </ComboBox>
+                        <ComboBox Name="cbSortingDirection" Style="{StaticResource ResourceKey=cbSearch}" SelectionChanged="cmbEmployee_SelectionChanged">
+                            <ComboBoxItem>По возростанию</ComboBoxItem>
+                            <ComboBoxItem>По убыванию</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                </GroupBox>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Style="{StaticResource ResourceKey=spPagination}">
+                        <TextBlock Text="Кол-во записей на 1 странице"/>
+                        <TextBox x:Name="txtPageCount" TextChanged="txtPageCount_TextChanged" PreviewTextInput="txtPageCount_PreviewTextInput"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Style="{StaticResource ResourceKey=spPagination}">
+                        <TextBlock Name="txtNextFirst" Uid="next" Visibility="{Binding VisibleButton[0]}" Text=" в начало " MouseDown="txtNextFirst_MouseDown" Style="{StaticResource tbButtonPagination}" Cursor="Hand"/>
+                        <TextBlock Name="txtPrev" Uid="prev" Text="&lt;" MouseDown="GoPage_MouseDown" Style="{StaticResource tbButtonPagination}"/>
+                        <TextBlock Name="txt1" Uid="1" Text="{Binding  Path = NPage[0]}" Visibility="{Binding Visible[0]}" FontWeight="{Binding Bold[0]}" MouseDown="GoPage_MouseDown" Style="{StaticResource tbButtonPagination}"/>
+                        <TextBlock Name="txt2" Uid="2" Text="{Binding  Path = NPage[1]}" Visibility="{Binding Visible[1]}" FontWeight="{Binding Bold[1]}" MouseDown="GoPage_MouseDown" Style="{StaticResource tbButtonPagination}"/>
+                        <TextBlock Name="txt3" Uid="3" Text="{Binding  Path = NPage[2]}" Visibility="{Binding Visible[2]}" FontWeight="{Binding Bold[2]}" MouseDown="GoPage_MouseDown" Style="{StaticResource tbButtonPagination}"/>
+                        <TextBlock Name="txt4" Uid="4" Text="{Binding  Path = NPage[3]}" Visibility="{Binding Visible[3]}" FontWeight="{Binding Bold[3]}" MouseDown="GoPage_MouseDown" Style="{StaticResource tbButtonPagination}" Cursor="Hand"/>
+                        <TextBlock Name="txt5" Uid="5" Text="{Binding  Path = NPage[4]}" Visibility="{Binding Visible[4]}" FontWeight="{Binding Bold[4]}" MouseDown="GoPage_MouseDown" Style="{StaticResource tbButtonPagination}"/>
+                        <TextBlock Name="txtNext" Uid="next" Text="&gt;" MouseDown="GoPage_MouseDown" Style="{StaticResource tbButtonPagination}" Cursor="Hand"/>
+                        <TextBlock Name="txtNextLast" Uid="next" Visibility="{Binding VisibleButton[1]}" Text=" в конец" MouseDown="txtNextLast_MouseDown" Style="{StaticResource tbButtonPagination}" Cursor="Hand"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+        <Grid Grid.Row="2">
+            <ListView x:Name="lvListTickets" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Center"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="10" CornerRadius="20" BorderThickness="1" BorderBrush="#445c93">
+                            <Grid Width="390" Height="400" Background="{Binding TimeColor}">
+                                <StackPanel>
+                                    <TextBlock Text="Билет на самолёт" HorizontalAlignment="Center" FontSize="22" FontWeight="Bold"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="60"></RowDefinition>
+                                            <RowDefinition Height="60"></RowDefinition>
+                                            <RowDefinition Height="60"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Image Style="{StaticResource ResourceKey=iIcon}" Source="../Resources/icon_route.png" Grid.Row="0" Grid.Column="0"/>
+                                        <StackPanel Style="{StaticResource ResourceKey=spElementsList}" Grid.Row="0" Grid.Column="1">
+                                            <TextBlock Text="От" HorizontalAlignment="Center"/>
+                                            <TextBlock Uid="{Binding Flights.Routes.id_departure_point}" Name="tbDeparturePoint" Loaded="tbDeparturePoint_Loaded"/>
+                                        </StackPanel>
+                                        <StackPanel Style="{StaticResource ResourceKey=spElementsList}" Grid.Row="0" Grid.Column="2">
+                                            <TextBlock Text="До" HorizontalAlignment="Center"/>
+                                            <TextBlock Uid="{Binding Flights.Routes.id_arrival_point}" Name="tbArrivalPoint" Loaded="tbDeparturePoint_Loaded"/>
+                                        </StackPanel>
+                                        <Image Style="{StaticResource ResourceKey=iIcon}" Source="../Resources/icon_date_time.png" Grid.Row="1" Grid.Column="0"/>
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1">
+                                            <TextBlock Text="Дата" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{Binding DepartureDate}"/>
+                                        </StackPanel>
+                                        <StackPanel Style="{StaticResource ResourceKey=spElementsList}" Grid.Row="1" Grid.Column="2">
+                                            <TextBlock Text="Время" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{Binding DepartureTime}"/>
+                                        </StackPanel>
+                                        <Image Style="{StaticResource ResourceKey=iIcon}" Source="../Resources/icon_people.png" Grid.Row="2" Grid.Column="0"/>
+                                        <StackPanel Style="{StaticResource ResourceKey=spElementsList}" Grid.Row="2" Grid.Column="1">
+                                            <TextBlock Text="Пассажир" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Passengers.FIO}"/>
+                                        </StackPanel>
+                                        <StackPanel Style="{StaticResource ResourceKey=spElementsList}" Grid.Row="2" Grid.Column="2">
+                                            <TextBlock Text="Кассир" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Employees.FIO}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <TextBlock Text="{Binding DateSale, StringFormat= Дата продажи: {0}}" HorizontalAlignment="Center"/>
+                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                        <TextBlock Text="Цена: " FontSize="22" FontWeight="Bold"/>
+                                        <TextBlock Uid="{Binding id_ticket}" Name="tbCost" Loaded="tbCost_Loaded" FontSize="22"></TextBlock>
+                                    </StackPanel>
+                                    <TextBlock Uid="{Binding id_ticket}" Name="tbDiscounts" Loaded="tbDiscounts_Loaded" FontSize="16" Foreground="Red" Margin="5"></TextBlock>
+                                    <Grid>
+                                        <Button x:Name="btnDelete"  Uid="{Binding id_ticket}" Template="{StaticResource CTButonMainPage}" Style="{StaticResource ResourceKey=btnMainButton}" HorizontalAlignment="Left" Content="Удалить" Click="btnDelete_Click"/>
+                                        <Button x:Name="btnUpdate" Uid="{Binding id_ticket}" Template="{StaticResource CTButonMainPage}" Style="{StaticResource ResourceKey=btnMainButton}" HorizontalAlignment="Right" Content="Изменить" Click="btnUpdate_Click"/>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <StackPanel Grid.Row="3">
+            <Grid>
+                <Button x:Name="btnExit" Template="{StaticResource CTButonMainPage}" Style="{StaticResource ResourceKey=btnMainButton}" HorizontalAlignment="Left" Click="btnExit_Click" Content="Назад"/>
+                <StackPanel x:Name="spLegend" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0, 5, 0, 5">
+                    <Image Style="{StaticResource ResourceKey=iIconHeader}" Source="../Resources/color_day_flight.png"/>
+                    <TextBlock Text= " - Дневные рейсы     "/>
+                    <Image Style="{StaticResource ResourceKey=iIconHeader}" Source="../Resources/color_night_flight.png"/>
+                    <TextBlock Text= " - Ночные рейсы"/>
+                </StackPanel>
+                <Button x:Name="btnAdd" Template="{StaticResource CTButonMainPage}" Style="{StaticResource ResourceKey=btnMainButton}" HorizontalAlignment="Right" Click="btnAdd_Click" Content="Добавить"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

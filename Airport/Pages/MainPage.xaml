@@ -1,0 +1,29 @@
+﻿<Page x:Class="Airport.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Airport"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1250"
+      Title="MainPage" Background="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" FontSize="40" Grid.Row="0" VerticalAlignment="Center">Добро пожаловать!</TextBlock>
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <TextBlock HorizontalAlignment="Center" FontSize="24">Выбирите действие</TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Name = "btnNextAuthorization" Click="btnNextAuthorization_Click" Style="{StaticResource ResourceKey=BtnMainPage}" Template="{StaticResource CTButonMainPage}">
+                    <TextBlock TextAlignment="Center">Авторизоваться</TextBlock>
+                </Button>
+                <Button Name = "btnNextRegistration" Click="btnNextRegistration_Click" Style="{StaticResource ResourceKey=BtnMainPage}" Template="{StaticResource CTButonMainPage}">
+                    <TextBlock TextAlignment="Center">Зарегистироваться</TextBlock>
+                </Button>
+            </StackPanel>
+            <Image Height="400" Width="900" Source="../Resources/airplane.png" Margin="30"/>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="749926230b204f5189a63d99eb2c3b43" Name="Diagram1" ZoomLevel="60">
+        <EntityTypeShape EntityType="BaseDataModel.ApplicationOfDiscounts" Width="1.5" PointX="10.5" PointY="5" />
+        <EntityTypeShape EntityType="BaseDataModel.Box_Offic" Width="1.5" PointX="8.25" PointY="4.625" />
+        <EntityTypeShape EntityType="BaseDataModel.Citys" Width="1.5" PointX="1.5" PointY="11.625" />
+        <EntityTypeShape EntityType="BaseDataModel.Discounts" Width="1.5" PointX="8.25" PointY="1.125" />
+        <EntityTypeShape EntityType="BaseDataModel.Employees" Width="1.5" PointX="3" PointY="4" />
+        <EntityTypeShape EntityType="BaseDataModel.EmployeesPhoto" Width="1.5" PointX="5.25" PointY="8.375" />
+        <EntityTypeShape EntityType="BaseDataModel.Flights" Width="1.5" PointX="6" PointY="12.625" />
+        <EntityTypeShape EntityType="BaseDataModel.Gender" Width="1.5" PointX="0.75" PointY="8.25" />
+        <EntityTypeShape EntityType="BaseDataModel.Passengers" Width="1.5" PointX="6" PointY="4.5" />
+        <EntityTypeShape EntityType="BaseDataModel.Passport_deta" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="BaseDataModel.Planes" Width="1.5" PointX="3.75" PointY="14.5" />
+        <EntityTypeShape EntityType="BaseDataModel.Roles" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="BaseDataModel.Routes" Width="1.5" PointX="3.75" PointY="11.375" />
+        <EntityTypeShape EntityType="BaseDataModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" />
+        <AssociationConnector Association="BaseDataModel.FK_ApplicationOfDiscounts_Box_Offic" />
+        <AssociationConnector Association="BaseDataModel.FK_ApplicationOfDiscounts_Discounts" />
+        <AssociationConnector Association="BaseDataModel.FK_BoxOffic_Cashiers" />
+        <AssociationConnector Association="BaseDataModel.FK_BoxOffic_Flights" />
+        <AssociationConnector Association="BaseDataModel.FK_BoxOffic_Passengers" />
+        <AssociationConnector Association="BaseDataModel.FK_Routes_Citys" />
+        <AssociationConnector Association="BaseDataModel.FK_Routes_Citys1" />
+        <AssociationConnector Association="BaseDataModel.FK_Cashiers_Gender" />
+        <AssociationConnector Association="BaseDataModel.FK_Cashiers_Roles" />
+        <AssociationConnector Association="BaseDataModel.FK_Employees_Passport_deta" />
+        <AssociationConnector Association="BaseDataModel.FK_EmployeesPhoto_Employees" />
+        <AssociationConnector Association="BaseDataModel.FK_Flights_Planes" />
+        <AssociationConnector Association="BaseDataModel.FK_Flights_Routes" />
+        <AssociationConnector Association="BaseDataModel.FK_Passengers_Gender" />
+        <AssociationConnector Association="BaseDataModel.FK_Passengers_Passport_deta" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
